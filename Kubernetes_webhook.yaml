@@ -53,7 +53,7 @@ data:
                 {
                     "envname": "MAIL_TO",
                     "source": "string",
-                    "name": "535875999@qq.com"
+                    "name": "<MAIL_TO>"
                 }
             ],
             "trigger-rule":
@@ -88,7 +88,7 @@ data:
                         "match":
                         {
                             "type": "value",
-                            "value": "deployment/zhen-blog ",
+                            "value": "deployment/zhen-blog",
                             "parameter":
                             {
                                 "source": "url",
@@ -167,14 +167,6 @@ spec:
     spec:
       containers:
       - env:
-        - name: MAIL_FROM
-          value: NTM1ODc1OTk5QHFxLmNvbQo=
-        - name: MAIL_PASSWORD
-          value: eHJwZnhxbHdkdmFwY2JjZAo=
-        - name: MAIL_SMTP_PORT
-          value: "465"
-        - name: MAIL_SMTP_SERVER
-          value: smtp.qq.com
         - name: WEBHOOK_CMD
           value: -template
         image: registry.cn-shenzhen.aliyuncs.com/rancher/webhook
