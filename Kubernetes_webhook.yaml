@@ -112,6 +112,118 @@ data:
             }
         }
     ]
+  kerra_blog.json: |-
+    [
+        {
+            "id": "kerra_blog",
+            "execute-command": "/webhooks.sh",
+            "command-working-directory": "/home",
+            "response-message": "I got the payload!",
+            "include-command-output-in-response": true,
+            "include-command-output-in-response-on-error": true,
+            "trigger-rule-mismatch-http-response-code": 500,
+            "response-headers":
+            [
+                {
+                    "name": "Access-Control-Allow-Origin",
+                    "value": "*"
+                }
+            ],
+            "pass-arguments-to-command":
+            [
+                {
+                    "source": "entire-payload"
+                }
+              ],
+            "pass-environment-to-command":
+            [
+                {
+                    "envname": "APP_NS",
+                    "source": "url",
+                    "name": "ns"
+                },
+                {
+                    "envname": "APP_WORKLOAD",
+                    "source": "url",
+                    "name": "workload"
+                },
+                {
+                    "envname": "APP_CONTAINER",
+                    "source": "url",
+                    "name": "container"
+                },
+                {
+                    "envname": "REPO_TYPE",
+                    "source": "url",
+                    "name": "repo_type"
+                },
+                {
+                    "envname": "NET_TYPE",
+                    "source": "url",
+                    "name": "net_type"
+                },
+                {
+                    "envname": "MAIL_TO",
+                    "source": "string",
+                    "name": "535875999@qq.com"
+                }
+            ],
+            "trigger-rule":
+            {
+                "and":
+                [
+                    {
+                        "match":
+                        {
+                            "type": "value",
+                            "value": "5oiR54ix5p2O5oGS5Li9",
+                            "parameter":
+                            {
+                                "source": "url",
+                                "name": "token"
+                            }
+                        }
+                    },
+                    {
+                        "match":
+                        {
+                            "type": "value",
+                            "value": "blog",
+                            "parameter":
+                            {
+                                "source": "url",
+                                "name": "ns"
+                            }
+                        }
+                    },
+                    {
+                        "match":
+                        {
+                            "type": "value",
+                            "value": "deployment/kerra-blog",
+                            "parameter":
+                            {
+                                "source": "url",
+                                "name": "workload"
+                            }
+                        }
+                    },
+                    {
+                        "match":
+                        {
+                            "type": "value",
+                            "value": "kerra-blog",
+                            "parameter":
+                            {
+                                "source": "url",
+                                "name": "container"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    ]
 kind: ConfigMap
 metadata:
   name: zhen-blog-webhook
